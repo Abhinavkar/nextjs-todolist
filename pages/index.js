@@ -1,4 +1,4 @@
-import { Card, Grid, Text, Button, Row, Input } from "@nextui-org/react";
+import { Card, Grid, Text, Button, Row, Input,Checkbox } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -50,12 +50,13 @@ export default function Home() {
               <Card.Divider />
               <Card.Body>
                 {tasks.map((task) => (
+                  
                   <Text key={task.index}>
-                    {task}
+                    <Checkbox lineThrough >{task}</Checkbox>
+                    
                     <Row justify="flex-end">
                       <Button
-                        ml={10}
-                        ur={20}
+                       
                         size="small"
                         css={{ padding: "0.5rem 1rem", marginRight: "0.5rem" }}
                         onClick={() => removeItems(task)}
@@ -65,7 +66,7 @@ export default function Home() {
                       </Button>
                       <Button
                         size="small"
-                        css={{ padding: "0.5rem 1rem" }}
+                        css={{ padding: "0.5rem 1rem", marginLeft: "0.5rem" }}
                         onClick={() => editTask(task)}
                         color="gradient"
                       >
@@ -73,21 +74,22 @@ export default function Home() {
                       </Button>
                     </Row>
                   </Text>
+               
                 ))}
                 {isEditMode && (
-                  <Card css={{ maxWidth: "330px" }}>
+                  <Card marginLeft="10rem" css={{ }}>
                     <Card.Body>
-                      <Input
+                      <Input 
                         placeholder="Updated Item Name"
                         value={updateItem}
-                        onChange={(e) => setUpdateItem(e.target.value)}
+                        onChange={(e) => setUpdateItem(e.target.value) }
                       />
-            <Button ml={10} color="gradient" onClick={() => updateTask(updateItem)}>
-              Update
-            </Button>
-          </Card.Body>
-        </Card>
-      )}
+                      <Button ml={10} color="gradient" onClick={() => updateTask(updateItem)}>
+                        Update
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                )}
                 <Input
                   placeholder="Task Name"
                   value={addItem}
@@ -98,7 +100,6 @@ export default function Home() {
                 <Button ml={10} onClick={AddItems} color="gradient">
                   Add Task
                 </Button>
-                
               </Card.Body>
               <Card.Divider />
               <Card.Footer css={{justifyContent:"center"}}>Made By Abhinav Kar ❤️</Card.Footer>
@@ -106,7 +107,6 @@ export default function Home() {
           </Grid>
         </Grid.Container>
       </div>
-     
     </>
   );
 }
